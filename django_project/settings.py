@@ -1,3 +1,4 @@
+import django_heroku
 import os
 """
 Django settings for django_project project.
@@ -136,3 +137,6 @@ LOGIN_URL = 'signin'
 LOGIN_REDIRECT_URL ='postanad'
 
 AUTH_USER_MODEL = 'dailytourneys.NewUser'
+
+#activating heroku
+django_heroku.settings(locals())
