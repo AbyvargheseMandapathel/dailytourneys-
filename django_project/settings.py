@@ -1,4 +1,12 @@
+import django_heroku
 import os
+import dj_database_url
+import psycopg2
+
+DATABASE_URL = os.environ['DATABASE_URL']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 """
 Django settings for django_project project.
 
@@ -77,8 +85,11 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'DATABASE':'daotj6a7rir43a',
+        'USER': 'zlovjfwsxrqsae',
+        'PORT':'5432',
+        'PASSWORD':'359e5cb2266926e6469d5ac1ea188559bdfe2d52b2e4983233a15517b30d8b61',
     }
 }
 
@@ -136,3 +147,6 @@ LOGIN_URL = 'signin'
 LOGIN_REDIRECT_URL ='postanad'
 
 AUTH_USER_MODEL = 'dailytourneys.NewUser'
+
+#activating heroku
+django_heroku.settings(locals())
